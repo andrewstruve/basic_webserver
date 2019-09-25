@@ -12,6 +12,7 @@ func main() {
 	// serve up a webpage
 	http.Handle("/", http.HandlerFunc(index))
 	http.Handle("/about", http.HandlerFunc(about))
+	// example handles for post Request data
 	http.Handle("/formInput", http.HandlerFunc(formInput))
 	http.Handle("/jsonInput", http.HandlerFunc(jsonInput))
 
