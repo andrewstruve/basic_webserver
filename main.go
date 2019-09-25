@@ -10,11 +10,16 @@ func main() {
 	//initDb()
 
 	// serve up a webpage
-	http.Handle("/", http.HandlerFunc(index))
-	http.Handle("/about", http.HandlerFunc(about))
+	http.Handle("/", http.HandlerFunc(indexPageHandle))
+	http.Handle("/about", http.HandlerFunc(aboutPageHandle))
+	http.Handle("/testData", http.HandlerFunc(testDataHandle))
+
 	// example handles for post Request data
-	http.Handle("/formInput", http.HandlerFunc(formInput))
-	http.Handle("/jsonInput", http.HandlerFunc(jsonInput))
+	http.Handle("/formInput", http.HandlerFunc(formInputHandle))
+	http.Handle("/jsonInput", http.HandlerFunc(jsonInputHandle))
+
+	// example handle for a get request
+	http.Handle("/getRandomNumber", http.HandlerFunc(getRandomNumberHandle))
 
 	// place all resources in the public folder, includes js, css, etc
 	fs := http.FileServer(http.Dir("./public"))

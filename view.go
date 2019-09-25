@@ -27,3 +27,8 @@ func renderHomePage(res http.ResponseWriter) {
 func renderAboutPage(res http.ResponseWriter) {
 	tpl.ExecuteTemplate(res, "about.gohtml", pd)
 }
+func renderTestDataPage(res http.ResponseWriter) {
+	tpl.ExecuteTemplate(res, "testData.gohtml", pd)
+}
+
+// Need more pages? just add a new render<pagename> function

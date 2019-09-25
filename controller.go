@@ -5,7 +5,10 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"math/rand"
 	"net/http"
+	"strconv"
+	"time"
 )
 
 type testStruct struct {
@@ -15,17 +18,21 @@ type testStruct struct {
 }
 
 // Get Requests to handle web pages
-func index(res http.ResponseWriter, req *http.Request) {
+func indexPageHandle(res http.ResponseWriter, req *http.Request) {
 	fmt.Println("GET /")
 	renderHomePage(res)
 }
-func about(res http.ResponseWriter, req *http.Request) {
+func aboutPageHandle(res http.ResponseWriter, req *http.Request) {
 	fmt.Println("GET /about")
 	renderAboutPage(res)
 }
+func testDataHandle(res http.ResponseWriter, req *http.Request) {
+	fmt.Println("GET /testData")
+	renderTestDataPage(res)
+}
 
 // Post Request handler to handle input data in body of request
-func formInput(res http.ResponseWriter, req *http.Request) {
+func formInputHandle(res http.ResponseWriter, req *http.Request) {
 	if req.Method == "POST" {
 		//varify content header
 		if req.Header["Content-Type"][0] == "application/x-www-form-urlencoded" {
@@ -46,7 +53,7 @@ func formInput(res http.ResponseWriter, req *http.Request) {
 }
 
 // Post request to handle json input
-func jsonInput(res http.ResponseWriter, req *http.Request) {
+func jsonInputHandle(res http.ResponseWriter, req *http.Request) {
 	if req.Method == "POST" {
 		//varify content header
 		if req.Header["Content-Type"][0] == "application/json" {
@@ -63,5 +70,14 @@ func jsonInput(res http.ResponseWriter, req *http.Request) {
 			log.Println(t.Test)
 			log.Println(t.Test2)
 		}
+		res.Write([]byte("{response: \"Data Submitted\"}"))
+	}
+}
+
+func getRandomNumberHandle(res http.ResponseWriter, req *http.Request) {
+	if req.Method == "GET" {
+		s1 := rand.NewSource(time.Now().UnixNano())
+		r1 := rand.New(s1)
+		res.Write([]byte(strconv.Itoa(r1.Int())))
 	}
 }
