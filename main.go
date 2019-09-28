@@ -20,7 +20,7 @@ func main() {
 
 	// example handle for a get request
 	http.Handle("/getRandomNumber", http.HandlerFunc(getRandomNumberHandle))
-
+	http.Handle("/getRandomNumberParams", http.HandlerFunc(getRandomNumberWithParametersHandle))
 	// place all resources in the public folder, includes js, css, etc
 	fs := http.FileServer(http.Dir("./public"))
 	// Anything that has a resources folder,

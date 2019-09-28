@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -57,11 +56,16 @@ func jsonInputHandle(res http.ResponseWriter, req *http.Request) {
 	if req.Method == "POST" {
 		//varify content header
 		if req.Header["Content-Type"][0] == "application/json" {
+			fmt.Println("POST /jsonInput")
 			body, err := ioutil.ReadAll(req.Body)
-			if err != nil {
-				panic(err)
-			}
 			fmt.Println(string(body))
+			if err != nil {
+				fmt.Println("JSON input handling failed")
+				fmt.Println(err)
+			}
+			//Add handling to JSON input
+
+			/* fmt.Println(string(body))
 			var t testStruct
 			err = json.Unmarshal(body, &t)
 			if err != nil {
@@ -69,6 +73,7 @@ func jsonInputHandle(res http.ResponseWriter, req *http.Request) {
 			}
 			log.Println(t.Test)
 			log.Println(t.Test2)
+			*/
 		}
 		res.Write([]byte("{response: \"Data Submitted\"}"))
 	}
@@ -78,6 +83,29 @@ func getRandomNumberHandle(res http.ResponseWriter, req *http.Request) {
 	if req.Method == "GET" {
 		s1 := rand.NewSource(time.Now().UnixNano())
 		r1 := rand.New(s1)
+		fmt.Println("GET /getRandomNumber Num:", r1.Int())
+		res.Write([]byte(strconv.Itoa(r1.Int())))
+	}
+}
+
+func getRandomNumberWithParametersHandle(res http.ResponseWriter, req *http.Request) {
+	if req.Method == "GET" {
+		keys, ok := req.URL.Query()["maxNum"]
+
+		if !ok || len(keys[0]) < 1 {
+			log.Println("Url Param 'maxNum' is missing")
+			return
+		}
+
+		// Query()["key"] will return an array of items,
+		// we only want the single item.
+		key := keys[0]
+
+		log.Println("Url Param 'maxNum' is: " + string(key))
+
+		s1 := rand.NewSource(time.Now().UnixNano())
+		r1 := rand.New(s1)
+		fmt.Println("GET /getRandomNumberWithParam Num:", r1.Int())
 		res.Write([]byte(strconv.Itoa(r1.Int())))
 	}
 }

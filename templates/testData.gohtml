@@ -1,10 +1,30 @@
 {{ template "header.gohtml" . }}
     <div>
-        <h2>This page is for testing input data</h2>
+        <h2>This page is for demonstration of sending data</h2>
         <br>
-        <h3>Send Post Request Query String Parameters</h3>
-        <h3>Send Post Request JSON String</h3>
-        <h3>Send a Get Request</h3>
+        <h3>Send POST Request Query String Parameters</h3>
+
+        <input type="text" name="firstName" id="firstName" placeholder="First Name" />
+        <input type="text" name="lastName" id="lastName" placeholder="Last Name" />
+        <button onclick="submitData()">Submit Data</button>
+        <div id="submitResponse"> </div>
+
+        <h3>Send POST Request JSON String</h3>
+        <input type="text" name="parameter1" id="parameter1" placeholder="parameter1" />
+        <input type="text" name="parameter2" id="parameter2" placeholder="parameter2" />
+        <button onclick="submitJSON()">Submit JSON</button>  
+        <div id="submitJSONResponse"> </div>   
+
+        <h3>Send a GET Request</h3>
+        <button onclick="getRandomNumber()">getRandomNumber</button>
+        <br>
+        RandomNumber=
+        <div id="randomNumber"> </div>
+        <h3>Send a GET Request with a parameter</h3>
+        <input type="text" name="maxNumber" id="maxNumber" placeholder="max number" />
+        <button onclick="getRandomNumberWithParameter()">getRandomNumberWithParam</button>     
+
      </div>
+     <script src="/resources/js/testData.js"></script>
 {{ template "footer.gohtml" . }}
 
