@@ -24,3 +24,10 @@ Home and About are what they say they are.
 Test Data is used to test out different types of Request types when data is submitted or retrieved 
 from a page.
 
+Application can be ran by executing: 
+go run main.go view.go controller.go
+
+It can also be built by executing:
+go build -o server main.go view.go controller.go 
+Then run the server by executing:
+.\Server
