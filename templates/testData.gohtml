@@ -1,30 +1,69 @@
 {{ template "header.gohtml" . }}
     <div>
-        <h2>This page is for demonstration of sending data</h2>
+        <h2>This page is for demonstration of sending data to a webserver</h2>
         <br>
-        <h3>Send POST Request Query String Parameters</h3>
-
-        <input type="text" name="firstName" id="firstName" placeholder="First Name" />
-        <input type="text" name="lastName" id="lastName" placeholder="Last Name" />
-        <button onclick="submitData()">Submit Data</button>
-        <div id="submitResponse"> </div>
-
+        <div class="container">
+            <div class="row">
+                <div class = "col"></div>
+                <div class = "col">
+                    <label for="firstName">First Name</label>
+                    <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First Name" />
+                    <label for="lastName">Last Name</label>
+                    <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Last Name" />
+                    <button class="btn btn-secondary" onclick="submitData()">Submit Data</button>
+                    <div id="submitResponse"> </div>
+                </div>
+                <div class = "col"></div>
+            </div>
+        </div>
         <h3>Send POST Request JSON String</h3>
-        <input type="text" name="parameter1" id="parameter1" placeholder="parameter1" />
-        <input type="text" name="parameter2" id="parameter2" placeholder="parameter2" />
-        <button onclick="submitJSON()">Submit JSON</button>  
-        <div id="submitJSONResponse"> </div>   
+        <div class="container">
+            <div class="row">
+            
+                <div class = "col"></div>
+                <div class = "col">
+                    
+                    <label for="parameter1">Parameter 1</label>
+                    <input type="text" class="form-control" name="parameter1" id="parameter1" placeholder="parameter1" />
+                    <label for="parameter2">Parameter 2</label>
+                    <input type="text" class="form-control" name="parameter2" id="parameter2" placeholder="parameter2" />
+                    <button class="btn btn-secondary" onclick="submitJSON()">Submit JSON</button>  
+                    <div id="submitJSONResponse"> </div>   
+                </div>
+                <div class = "col"></div>
+            </div>
+        </div>
 
         <h3>Send a GET Request</h3>
-        <button onclick="getRandomNumber()">getRandomNumber</button>
-        <br>
-        RandomNumber=
-        <div id="randomNumber"> </div>
-        <h3>Send a GET Request with a parameter</h3>
-        <input type="text" name="maxNumber" id="maxNumber" placeholder="max number" />
-        <button onclick="getRandomNumberWithParameter()">getRandomNumberWithParam</button>     
+        <div class="container">
+            <div class="row">
+                <div class = "col"></div>
+                <div class = "col">        
+                    <button class="btn btn-secondary" onclick="getRandomNumber()">getRandomNumber</button>
+                    <br>
+                    RandomNumber=
+                    <div id="randomNumber"> </div>
+                </div>
+                <div class = "col"></div>
+            </div>
+        </div>
 
-     </div>
-     <script src="/resources/js/testData.js"></script>
+        <h3>Send a GET Request with a parameter</h3>
+        <div class="container">
+            <div class="row">
+                <div class = "col"></div>
+                <div class = "col">     
+                    <input type="text" class="form-control" name="maxNumber" id="maxNumber" placeholder="max number" />
+                    <button class="btn btn-secondary" onclick="getRandomNumberWithParameter()">getRandomNumberWithParam</button> 
+                    <br>  
+                    RandomNumber=
+                    <div id="randomNumberWithParameter"> </div>
+                </div>
+                <div class = "col"></div>
+            </div>
+        </div>
+
+    </div>
+    <script src="/resources/js/testData.js"></script>
 {{ template "footer.gohtml" . }}
 

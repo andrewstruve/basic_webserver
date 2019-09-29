@@ -84,15 +84,15 @@ func getRandomNumberHandle(res http.ResponseWriter, req *http.Request) {
 		s1 := rand.NewSource(time.Now().UnixNano())
 		r1 := rand.New(s1)
 		fmt.Println("GET /getRandomNumber Num:", r1.Int())
-		res.Write([]byte(strconv.Itoa(r1.Int())))
+		res.Write([]byte(strconv.Itoa(r1.Intn(1000))))
 	}
 }
 
 func getRandomNumberWithParametersHandle(res http.ResponseWriter, req *http.Request) {
 	if req.Method == "GET" {
-		keys, ok := req.URL.Query()["maxNum"]
+		keys, err := req.URL.Query()["maxNum"]
 
-		if !ok || len(keys[0]) < 1 {
+		if !err || len(keys[0]) < 1 {
 			log.Println("Url Param 'maxNum' is missing")
 			return
 		}
@@ -101,11 +101,12 @@ func getRandomNumberWithParametersHandle(res http.ResponseWriter, req *http.Requ
 		// we only want the single item.
 		key := keys[0]
 
-		log.Println("Url Param 'maxNum' is: " + string(key))
+		//log.Println("Url Param 'maxNum' is: " + string(key))
+		maxVal, _ := strconv.Atoi(string(key))
 
 		s1 := rand.NewSource(time.Now().UnixNano())
 		r1 := rand.New(s1)
-		fmt.Println("GET /getRandomNumberWithParam Num:", r1.Int())
-		res.Write([]byte(strconv.Itoa(r1.Int())))
+		fmt.Println("GET /getRandomNumberWithParam Num:", r1.Intn(maxVal))
+		res.Write([]byte(strconv.Itoa(r1.Intn(maxVal))))
 	}
 }

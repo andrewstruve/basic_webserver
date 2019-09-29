@@ -84,7 +84,7 @@ function getRandomNumberWithParameter()
     if (this.readyState == 4 && this.status == 200) 
         {
             randomNumber = this.responseText;   
-            document.getElementById("randomNumber").innerHTML = randomNumber;
+            document.getElementById("randomNumberWithParameter").innerHTML = randomNumber;
         }         
     };
     xmlhttp.open("GET","/getRandomNumberParams?maxNum="+parameter1);
